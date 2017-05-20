@@ -1,0 +1,27 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "node": "current"
+        },
+        "loose": true
+      }
+    ],
+    "stage-0",
+    "react"
+  ],
+  "plugins": [
+    "transform-flow-strip-types",
+    "transform-runtime",
+    [
+      "resolver",
+      {
+        "resolveDirs": [
+          "libs"
+        ]
+      }
+    ]
+  ]
+}
