@@ -10,9 +10,12 @@ const Button = styled.button`
   color: #fff;
   font-family: ${props => props.theme.typography.fonts.condensed};
   text-transform: uppercase;
-  letter-spacing: ${rem('2px')};
+  letter-spacing: ${rem('4px')};
   font-weight: bold;
   margin-right: ${modularScale(0)};
+  transition:
+    color 175ms ease-in,
+    border-color 175ms ease-in;
 
   &:focus {
     outline: none;
@@ -27,9 +30,15 @@ const Button = styled.button`
     font-size: ${modularScale(0)};
     border: 2px solid #fff;
 
-    &:hover {
+    &:not([disabled]):hover {
       background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
     }
+  `}
+
+  ${props => props.disabled && css`
+    border-color: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: default;
   `}
 `;
 
