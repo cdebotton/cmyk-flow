@@ -31,6 +31,7 @@ declare module 'redux-form' {
     },
     meta: {
       error: string,
+      warning: string,
       touched: boolean,
       pristine: boolean,
     },
