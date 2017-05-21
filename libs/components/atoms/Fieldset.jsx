@@ -20,7 +20,7 @@ const Fieldset = styled.div`
   border: none;
   margin: 0 0 ${modularScale(2)};
   padding: 0;
-  width: ${rem('480px')};
+  width: ${rem('640px')};
   max-width: calc(100vw - ${modularScale(2)});
 
   &:last-child {
