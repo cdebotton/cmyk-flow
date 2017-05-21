@@ -7,12 +7,25 @@ import Field from 'components/atoms/Field';
 const Fieldset = styled.div`
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: ${(props) => {
+    switch (props.align) {
+      case 'right':
+        return 'flex-end';
+      case 'left':
+        return 'flex-start';
+      default:
+        return 'space-between';
+    }
+  }};
   border: none;
-  margin: 0;
+  margin: 0 0 ${modularScale(2)};
   padding: 0;
   width: ${rem('480px')};
   max-width: calc(100vw - ${modularScale(2)});
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   ${Field} {
     flex: 0 1 calc(50% - ${modularScale(1)});

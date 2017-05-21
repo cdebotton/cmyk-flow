@@ -10,8 +10,13 @@ import configureStore from 'http/configureStore';
 
 import type { Context } from 'koa';
 
+type RouterContext = {
+  url?: string,
+  status?: number,
+};
+
 export default () => (ctx: Context) => {
-  const routerContext = {};
+  const routerContext: RouterContext = {};
   const store = configureStore();
 
   const html = renderToString(

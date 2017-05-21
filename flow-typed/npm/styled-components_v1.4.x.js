@@ -1,7 +1,6 @@
+// @flow
 // flow-typed signature: 8e43d27dae79968dc11e73b131ec77da
 // flow-typed version: d36e170dab/styled-components_v1.4.x/flow_>=v0.25.x
-
-// @flow
 
 declare module 'styled-components' {
   declare type Interpolation = ((executionContext: Object) => string) | string | number;

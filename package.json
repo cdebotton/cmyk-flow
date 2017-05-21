@@ -42,6 +42,7 @@
     "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",
     "redux-devtools-extension": "^2.13.2",
+    "redux-form": "^6.7.0",
     "redux-saga": "^0.15.3",
     "styled-components": "2.0.0-17",
     "webpack": "^2.5.1",
