@@ -1,13 +1,15 @@
 /* @flow */
 
-import { ConnectedComponent } from 'react-redux';
+import { StatelessComponent } from 'react-redux';
 
 declare module 'redux-form' {
   declare type FormProps = {
     form: string,
   };
 
-  declare function reduxForm(props: FormProps): ConnectedComponent<*, *, *, *>;
+  declare function reduxForm<OP, P, ST, DF, CX>(
+    props: FormProps,
+  ): (component: React$Component<DF, OP & P, ST> | StatelessComponent<OP & P, CX>) => Function;
 
   declare function reducer<S, A>(state: S, action: A): S;
 

@@ -11,7 +11,7 @@ type Props = {
 };
 
 const LoginForm = ({ reset }: Props) => (
-  <form onSubmit={event => event.preventDefault()}>
+  <form onSubmit={(event: Event & { target: HTMLFormElement }) => event.preventDefault()}>
     <Fieldset>
       <Field name="username" label="Username" component={LabeledInput} />
       <Field name="password" type="password" label="Password" component={LabeledInput} />
