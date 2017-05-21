@@ -1,3 +1,5 @@
+/* @flow */
+
 // flow-typed signature: cfe423889942df70fd53fcaad18ef279
 // flow-typed version: 84d79be776/react-redux_v5.x.x/flow_>=v0.30.x
 

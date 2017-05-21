@@ -6,7 +6,11 @@ import Fieldset from 'components/atoms/Fieldset';
 import Button from 'components/atoms/Button';
 import LabeledInput from 'components/molecules/LabeledInput';
 
-const LoginForm = () => (
+type Props = {
+  reset: (formName: string) => void,
+};
+
+const LoginForm = ({ reset }: Props) => (
   <form onSubmit={event => event.preventDefault()}>
     <Fieldset>
       <Field name="username" label="Username" component={LabeledInput} />
@@ -14,7 +18,7 @@ const LoginForm = () => (
     </Fieldset>
     <Fieldset align="right">
       <Button type="submit" primary>Go</Button>
-      <Button type="reset">Reset</Button>
+      <Button type="reset" onClick={() => reset('login')}>Reset</Button>
     </Fieldset>
   </form>
 );
