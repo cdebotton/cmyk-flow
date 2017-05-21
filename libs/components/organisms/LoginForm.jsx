@@ -10,7 +10,7 @@ import { required } from 'utils/validations';
 type Props = {
   reset: (formName: string) => void,
   pristine: boolean,
-  valid: boolean,
+  invalid: boolean,
   submitting: boolean,
 };
 
