@@ -17,6 +17,10 @@ const Html = ({ html }: Props): React$Element<any> => (
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <title>CMYK</title>
       <style dangerouslySetInnerHTML={{ __html: sheet.getStyleTags(html) }} />
+      <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Open+Sans:400,400i,700,700i"
+        rel="stylesheet"
+      />
     </head>
     <body>
       <main id="app" dangerouslySetInnerHTML={{ __html: html }} />

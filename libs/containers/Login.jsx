@@ -1,12 +1,12 @@
 /* @flow */
 
 import { connect } from 'react-redux';
-import Login from 'components/Login';
+import Login from 'components/pages/Login';
 import { updateField } from 'state/forms/actions';
 
 import type { Connector } from 'react-redux';
 import type { Dispatch, State } from 'state/types';
-import type { Props as OwnProps } from 'components/Login';
+import type { Props as OwnProps } from 'components/pages/Login';
 import type { FieldProps } from 'state/forms/types';
 
 type Props = {

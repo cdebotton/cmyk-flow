@@ -5,6 +5,7 @@ import { normalize } from 'polished';
 
 injectGlobal`
   ${normalize()}
+  font-family: ${props => props.theme.admin.typography.fonts.regular};
 `;
 
 const App = styled.div`

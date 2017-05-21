@@ -4,7 +4,7 @@ import React from 'react';
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import Router from 'react-router/StaticRouter';
-import Html from 'components/Html';
+import Html from 'components/pages/Html';
 import Root from 'containers/Root';
 import configureStore from 'http/configureStore';
 
