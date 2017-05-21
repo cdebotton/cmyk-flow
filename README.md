@@ -5,6 +5,7 @@ CMYK is very much so a work in progress with several goals:
 - Act as a headless GraphQL CMS.
 - Easy integration and setup through docker.
 - 100% Flow coverage.
+- Follow atomic design pattern.
 
 This project is also an example of how I believe one should structure React / Redux applications. I'm going to move forward with the following technologies:
 
