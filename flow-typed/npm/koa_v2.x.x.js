@@ -250,6 +250,7 @@ declare module 'koa' {
     'proxy': mixed,
     'env': string,
   };
+
   declare class Application extends events$EventEmitter {
     context: Context,
 

@@ -1,10 +1,17 @@
 /* @flow */
 
 import React from 'react';
+import { connect } from 'react-redux';
 import Route from 'react-router/Route';
 import Redirect from 'react-router/Redirect';
+import type { Connector } from 'react-redux';
+import type { State } from 'state/types';
 
 type Props = {
+  authed: boolean,
+};
+
+type OwnProps = {
   component: (props: any) => React$Element<*>,
 };
 
@@ -12,11 +19,15 @@ type RenderProps = {
   location: string,
 };
 
-const PrivateRoute = ({ component: Component, ...rest }: Props): React$Element<*> => (
+const PrivateRoute = ({
+  component: Component,
+  authed,
+  ...rest
+}: OwnProps & Props): React$Element<*> => (
   <Route
     {...rest}
     render={(props: RenderProps) => {
-      if (false) {
+      if (authed) {
         return <Component {...props} />;
       }
 
@@ -25,4 +36,10 @@ const PrivateRoute = ({ component: Component, ...rest }: Props): React$Element<*
   />
 );
 
-export default PrivateRoute;
+const mapStateToProps = (state: State) => ({
+  authed: state.session.authed,
+});
+
+const connector: Connector<OwnProps, Props> = connect(mapStateToProps);
+
+export default connector(PrivateRoute);
