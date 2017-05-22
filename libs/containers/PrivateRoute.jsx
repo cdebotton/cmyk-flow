@@ -4,6 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Route from 'react-router/Route';
 import Redirect from 'react-router/Redirect';
+import { getAuthed } from 'state/session/selectors';
 import type { Connector } from 'react-redux';
 import type { State } from 'state/types';
 
@@ -37,7 +38,7 @@ const PrivateRoute = ({
 );
 
 const mapStateToProps = (state: State) => ({
-  authed: state.session.authed,
+  authed: getAuthed(state),
 });
 
 const connector: Connector<OwnProps, Props> = connect(mapStateToProps);
