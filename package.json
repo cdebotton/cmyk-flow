@@ -34,9 +34,12 @@
     "stylelint-processor-styled-components": "^0.1.0"
   },
   "dependencies": {
+    "bookshelf": "^0.10.3",
     "express": "^4.15.3",
     "isomorphic-fetch": "^2.2.1",
+    "knex": "^0.13.0",
     "koa": "^2.2.0",
+    "pg": "^6.2.2",
     "pm2": "^2.4.6",
     "polished": "^1.1.2",
     "react": "^15.5.4",
@@ -48,6 +51,7 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-form": "^6.7.0",
     "redux-saga": "^0.15.3",
+    "reselect": "^3.0.1",
     "styled-components": "2.0.0-17",
     "webpack": "^2.5.1",
     "webpack-dev-middleware": "^1.10.2",
