@@ -3,12 +3,20 @@
 import { connect } from 'react-redux';
 import Login from 'components/pages/Login';
 import { loginRequest } from 'state/session/actions';
+import { getAuthed } from 'state/session/selectors';
 import type { Connector } from 'react-redux';
-import type { Dispatch } from 'state/types';
+import type { State, Dispatch } from 'state/types';
 
 type Props = {
+  error: ?Error,
+  authed: boolean,
   handleSubmit: ({ username: string, password: string }) => void,
 };
+
+const mapStateToProps = (state: State) => ({
+  authed: getAuthed(state),
+  error: state.session.error,
+});
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   handleSubmit: ({ username, password }) => {
@@ -16,6 +24,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 
-const connector: Connector<{}, Props> = connect(undefined, mapDispatchToProps);
+const connector: Connector<{}, Props> = connect(mapStateToProps, mapDispatchToProps);
 
 export default connector(Login);
