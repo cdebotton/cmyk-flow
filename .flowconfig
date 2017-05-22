@@ -1,5 +1,6 @@
 [ignore]
-.*/node_modules/styled-components/.*
+.*/node_modules/styled-components/.
+.*/node_modules/stylelint/.**
 .*/node_modules/polished/.*
 
 [include]
