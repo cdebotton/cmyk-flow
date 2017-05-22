@@ -6,7 +6,9 @@ import { loginRequest } from 'state/session/actions';
 import type { Connector } from 'react-redux';
 import type { Dispatch } from 'state/types';
 
-type Props = {};
+type Props = {
+  handleSubmit: ({ username: string, password: string }) => void,
+};
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   handleSubmit: ({ username, password }) => {
@@ -14,6 +16,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 
-const connector: Connector<{}, {}> = connect(undefined, mapDispatchToProps);
+const connector: Connector<{}, Props> = connect(undefined, mapDispatchToProps);
 
 export default connector(Login);

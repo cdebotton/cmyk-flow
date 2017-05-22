@@ -12,9 +12,9 @@ const postLogin = (username: string, password: string): Promise<{ token: string 
     body: JSON.stringify({ username, password }),
   }).then(resp => resp.json());
 
-export function* loginRequested(action: Action): Generator<IOEffect, *, *> {
+export function* loginRequested(action: Action): Generator<IOEffect, void, string> {
   if (action.type !== LOGIN_REQUEST) {
-    return;
+    throw new TypeError(`Invalid action. Expected ${LOGIN_REQUEST}, not ${action.type}.`);
   }
   try {
     const token = yield call(postLogin, action.payload.username, action.payload.password);
@@ -24,6 +24,6 @@ export function* loginRequested(action: Action): Generator<IOEffect, *, *> {
   }
 }
 
-export default function* sessionSaga(): Generator<IOEffect, *, *> {
+export default function* sessionSaga(): Generator<IOEffect, void, string> {
   yield takeLatest(LOGIN_REQUEST, loginRequested);
 }

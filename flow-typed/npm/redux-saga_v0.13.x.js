@@ -495,6 +495,7 @@ declare module 'redux-saga/effects' {
 
   declare module.exports: {
     take: TakeFn,
+    takeLatest: TakeFn,
     takem: TakeFn,
     put: PutFn,
     race: RaceFn,
