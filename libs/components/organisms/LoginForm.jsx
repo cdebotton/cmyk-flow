@@ -23,6 +23,7 @@ const LoginForm = ({ handleSubmit, onSubmit, reset, pristine, submitting, invali
     <Fieldset>
       <Field name="username" label="Username" component={LabeledInput} validate={required} />
       <Field
+        autoComplete="new-password"
         name="password"
         type="password"
         label="Password"

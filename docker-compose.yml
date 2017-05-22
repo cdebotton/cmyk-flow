@@ -1,0 +1,32 @@
+version: '3'
+services:
+  nginx:
+    build:
+      context: ./containers/nginx
+    ports:
+      - 80:80
+      - 443:443
+    extra_hosts:
+      - "dockerhost:${DOCKER_HOST_IP}"
+    volumes:
+        - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
+        - ${NGINX_SITES_PATH}:/etc/nginx/sites-available
+  postgres:
+    build: ./containers/postgres
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+  pgadmin:
+    build: ./containers/pgadmin
+    ports:
+      - "5050:5050"
+
+volumes:
+    postgres:
+        driver: "local"

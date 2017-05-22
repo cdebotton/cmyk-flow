@@ -3,3 +3,5 @@ node_modules
 ._*
 thumbs.db
 npm-debug.log*
+.env
+logs/*

@@ -2,7 +2,7 @@
 
 export type State = {
   +isLoggingIn: boolean,
-  +sessionId: ?number,
+  +token: ?string,
   +error: ?Error,
 };
 

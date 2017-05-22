@@ -16,6 +16,7 @@ export function* loginRequested(action: Action): Generator<IOEffect, void, strin
   if (action.type !== LOGIN_REQUEST) {
     throw new TypeError(`Invalid action. Expected ${LOGIN_REQUEST}, not ${action.type}.`);
   }
+
   try {
     const token = yield call(postLogin, action.payload.username, action.payload.password);
     yield put(loginSuccess(token));
