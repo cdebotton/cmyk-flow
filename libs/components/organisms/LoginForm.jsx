@@ -1,21 +1,25 @@
 /* @flow */
 
 import React from 'react';
-import { Field } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
 import Fieldset from 'components/atoms/Fieldset';
 import Button from 'components/atoms/Button';
 import LabeledInput from 'components/molecules/LabeledInput';
 import { required } from 'utils/validations';
 
+type LoginHandler = (data: { username: string, password: string }) => void;
+
 type Props = {
+  handleSubmit: (callback: LoginHandler) => void,
+  onSubmit: LoginHandler,
   reset: (formName: string) => void,
   pristine: boolean,
   invalid: boolean,
   submitting: boolean,
 };
 
-const LoginForm = ({ reset, pristine, submitting, invalid }: Props) => (
-  <form onSubmit={(event: Event & { target: HTMLFormElement }) => event.preventDefault()}>
+const LoginForm = ({ handleSubmit, onSubmit, reset, pristine, submitting, invalid }: Props) => (
+  <form onSubmit={handleSubmit(onSubmit)}>
     <Fieldset>
       <Field name="username" label="Username" component={LabeledInput} validate={required} />
       <Field
@@ -24,7 +28,6 @@ const LoginForm = ({ reset, pristine, submitting, invalid }: Props) => (
         label="Password"
         component={LabeledInput}
         validate={required}
-        warn={() => 'Warned lol'}
       />
     </Fieldset>
     <Fieldset align="right">
@@ -36,4 +39,4 @@ const LoginForm = ({ reset, pristine, submitting, invalid }: Props) => (
   </form>
 );
 
-export default LoginForm;
+export default reduxForm({ form: 'login' })(LoginForm);

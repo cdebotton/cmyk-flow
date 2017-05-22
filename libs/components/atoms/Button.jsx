@@ -31,7 +31,12 @@ const Button = styled.button`
     border: 2px solid #fff;
 
     &:not([disabled]):hover {
-      background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
+      background-image:
+        linear-gradient(
+          to bottom right,
+          rgba(255, 255, 255, 0.1),
+          rgba(255, 255, 255, 0.2)
+        );
     }
   `}
 
