@@ -8,7 +8,7 @@ import type { Connector } from 'react-redux';
 import type { State, Dispatch } from 'state/types';
 
 type Props = {
-  error: ?Error,
+  error: ?string,
   authed: boolean,
   handleSubmit: ({ username: string, password: string }) => void,
 };

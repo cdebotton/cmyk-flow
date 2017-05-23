@@ -7,13 +7,14 @@ import LoginForm from 'components/organisms/LoginForm';
 import adminTheme from 'themes/admin';
 
 export type Props = {
+  error: ?string,
   handleSubmit: (event: Event & { target: HTMLFormElement }) => void,
 };
 
-const Login = ({ handleSubmit }: Props): React$Element<any> => (
+const Login = ({ error, handleSubmit }: Props): React$Element<any> => (
   <ThemeProvider theme={adminTheme}>
     <Page centered gradient>
-      <LoginForm onSubmit={handleSubmit} />
+      <LoginForm loginError={error} onSubmit={handleSubmit} />
     </Page>
   </ThemeProvider>
 );
