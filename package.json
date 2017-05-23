@@ -34,11 +34,18 @@
     "stylelint-processor-styled-components": "^0.1.0"
   },
   "dependencies": {
+    "babel-register": "^6.24.1",
+    "bcrypt": "^1.0.2",
     "bookshelf": "^0.10.3",
+    "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "isomorphic-fetch": "^2.2.1",
+    "jsonwebtoken": "^7.4.1",
     "knex": "^0.13.0",
     "koa": "^2.2.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-compress": "^2.0.0",
+    "koa-router": "^7.2.0",
     "pg": "^6.2.2",
     "pm2": "^2.4.6",
     "polished": "^1.1.2",
