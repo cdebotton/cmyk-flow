@@ -7,9 +7,11 @@ import Router from 'react-router-dom/BrowserRouter';
 import { AppContainer } from 'react-hot-loader';
 import Root from 'containers/Root';
 import configureStore from 'client/configureStore';
+import rootSaga from 'state/sagas';
 
 const mount = document.querySelector('#app');
 const store = configureStore();
+store.runSaga(rootSaga);
 
 const render = (Component) => {
   ReactDOM.render(

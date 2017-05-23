@@ -7,6 +7,7 @@ import Router from 'react-router/StaticRouter';
 import Html from 'components/pages/Html';
 import Root from 'containers/Root';
 import configureStore from 'http/configureStore';
+import rootSaga from 'state/sagas';
 
 import type { Context } from 'koa';
 
@@ -18,6 +19,7 @@ type RouterContext = {
 export default () => (ctx: Context) => {
   const routerContext: RouterContext = {};
   const store = configureStore();
+  store.runSaga(rootSaga);
 
   const html = renderToString(
     <Provider store={store}>
