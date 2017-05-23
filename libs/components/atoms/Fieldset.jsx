@@ -22,6 +22,7 @@ const Fieldset = styled.div`
   padding: 0;
   width: ${rem('640px')};
   max-width: calc(100vw - ${modularScale(2)});
+  align-items: center;
 
   &:last-child {
     margin-bottom: 0;
