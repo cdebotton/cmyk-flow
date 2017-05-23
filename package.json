@@ -46,6 +46,7 @@
     "koa-bodyparser": "^4.2.0",
     "koa-compress": "^2.0.0",
     "koa-router": "^7.2.0",
+    "koa-session": "^5.0.0",
     "pg": "^6.2.2",
     "pm2": "^2.4.6",
     "polished": "^1.1.2",
