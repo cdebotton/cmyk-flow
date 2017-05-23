@@ -493,12 +493,24 @@ declare module 'redux-saga/effects' {
     (channel: Channel): FlushEffect;
   }
 
+  declare type AllEffectDescriptor =
+    | $npm$ReduxSaga$IOEffect[]
+    | { [key: string]: $npm$ReduxSaga$IOEffect };
+
+  declare type AllEffect = {
+    ALL: AllEffectDescriptor,
+  };
+
+  declare function all(effects: $npm$ReduxSaga$IOEffect[]): AllEffect;
+  declare function all(effects: { [key: string]: $npm$ReduxSaga$IOEffect }): AllEffect;
+
   declare module.exports: {
     take: TakeFn,
     takeLatest: TakeFn,
     takem: TakeFn,
     put: PutFn,
     race: RaceFn,
+    all: all,
     call: CallFn,
     apply: ApplyFn,
     cps: CpsFn,
