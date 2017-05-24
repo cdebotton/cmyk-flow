@@ -4,11 +4,13 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer from 'state';
+import routerMiddleware from 'state/router/middleware';
+import type { RouterHistory } from 'react-router';
 import type { Store } from 'state/types';
 
-const configureStore = (): Store & { runSaga: Function } => {
+const configureStore = (history: RouterHistory): Store & { runSaga: Function } => {
   const sagaMiddleware = createSagaMiddleware();
-  const enhancer = composeWithDevTools(applyMiddleware(sagaMiddleware));
+  const enhancer = composeWithDevTools(applyMiddleware(sagaMiddleware, routerMiddleware(history)));
   const store = createStore(rootReducer, enhancer);
 
   if (module.hot) {
