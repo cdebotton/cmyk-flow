@@ -8,7 +8,7 @@ const initialState = {
   location: null,
 };
 
-const reducer = (state: State = initialState, action: Action) => {
+const routerReducer = (state: State = initialState, action: Action) => {
   switch (action.type) {
     case LOCATION_CHANGE:
       return {
@@ -20,4 +20,4 @@ const reducer = (state: State = initialState, action: Action) => {
   }
 };
 
-export default reducer;
+export default routerReducer;
