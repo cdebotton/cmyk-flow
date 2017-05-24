@@ -3,21 +3,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import Router from 'react-router-dom/BrowserRouter';
 import { AppContainer } from 'react-hot-loader';
+import createHistory from 'history/createBrowserHistory';
 import Root from 'containers/Root';
+import Router from 'containers/ConnectedRouter';
 import configureStore from 'client/configureStore';
 import rootSaga from 'state/sagas';
 
 const mount = document.querySelector('#app');
-const store = configureStore();
+const history = createHistory();
+const store = configureStore(history);
 store.runSaga(rootSaga);
 
 const render = (Component) => {
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>
-        <Router>
+        <Router history={history}>
           <Component />
         </Router>
       </Provider>
