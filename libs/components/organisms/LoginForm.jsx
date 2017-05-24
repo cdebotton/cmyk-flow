@@ -29,7 +29,7 @@ const LoginForm = ({
   submitting,
   invalid,
 }: Props) => (
-  <form onSubmit={handleSubmit(onSubmit)}>
+  <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
     <Fieldset>
       <Field name="username" label="Username" component={LabeledInput} validate={required} />
       <Field
