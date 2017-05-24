@@ -4,6 +4,7 @@ import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import compress from 'koa-compress';
 import middleware from 'http/middleware';
+import session from 'koa-session';
 import sessionApi from 'http/api/session';
 
 const app = new Koa();
@@ -13,8 +14,10 @@ if (!PORT) {
   throw new ReferenceError('process.env.PORT is undefined.');
 }
 
+app.keys = ['secret', 'keys'];
 app.use(compress());
 app.use(bodyParser());
+app.use(session(app));
 app.use(sessionApi.routes());
 app.use(sessionApi.allowedMethods());
 app.use(middleware());
