@@ -8,7 +8,7 @@ import createHistory from 'history/createBrowserHistory';
 import Root from 'containers/Root';
 import Router from 'containers/ConnectedRouter';
 import configureStore from 'client/configureStore';
-import rootSaga from 'state/sagas';
+import rootSaga from 'sagas';
 
 const mount = document.querySelector('#app');
 const history = createHistory();
