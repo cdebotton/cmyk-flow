@@ -6,7 +6,7 @@
   "scripts": {
     "start": "pm2 start ecosystem.config.js; pm2 logs",
     "stop": "pm2 kill",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ava"
   },
   "author": "",
   "license": "ISC",
@@ -34,11 +34,13 @@
     "stylelint-processor-styled-components": "^0.1.0"
   },
   "dependencies": {
+    "ava": "^0.19.1",
     "babel-register": "^6.24.1",
     "bcrypt": "^1.0.2",
     "bookshelf": "^0.10.3",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
+    "fetch-mock": "^5.11.0",
     "history": "^4.6.1",
     "isomorphic-fetch": "^2.2.1",
     "jsonwebtoken": "^7.4.1",
@@ -53,17 +55,35 @@
     "polished": "^1.1.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-fontawesome": "^1.6.1",
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",
     "redux-devtools-extension": "^2.13.2",
     "redux-form": "^6.7.0",
+    "redux-mock-store": "^1.2.3",
     "redux-saga": "^0.15.3",
     "reselect": "^3.0.1",
-    "styled-components": "2.0.0-17",
+    "styled-components": "2",
     "webpack": "^2.5.1",
     "webpack-dev-middleware": "^1.10.2",
     "webpack-hot-middleware": "^2.18.0"
+  },
+  "ava": {
+    "files": [
+      "./libs/**/__tests__/*-tests.js"
+    ],
+    "verbose": true,
+    "source": [
+      "**/*.{js,jsx}"
+    ],
+    "concurrency": 5,
+    "failFast": true,
+    "powerAssert": false,
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
   }
 }
