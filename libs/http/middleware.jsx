@@ -7,7 +7,7 @@ import Router from 'react-router/StaticRouter';
 import Html from 'components/pages/Html';
 import Root from 'containers/Root';
 import configureStore from 'http/configureStore';
-import rootSaga from 'state/sagas';
+import rootSaga from 'sagas';
 
 import type { Context } from 'koa';
 
