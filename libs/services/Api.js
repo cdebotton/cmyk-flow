@@ -1,6 +1,6 @@
 /* @flow */
 
-import fetch from 'isomorphic-fetch';
+import 'isomorphic-fetch';
 
 type JSONType = string | number | { [key: string]: JSONType } | JSONType[];
 type Method = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
@@ -26,6 +26,8 @@ const makeRequest = async (method: Method, uri: string, data: JSONType): Promise
 };
 
 export default {
-  login: (username: string, password: string) =>
+  authorize: (username: string, password: string) =>
     makeRequest('POST', '/api/login', { username, password }),
+  storeData: (data: { [key: string]: string | number | boolean }) => data,
+  removeItem: (key: string) => key,
 };
