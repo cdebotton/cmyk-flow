@@ -16,6 +16,10 @@ const Html = ({ html }: Props): React$Element<any> => (
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <title>CMYK</title>
+      <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      />
       <style dangerouslySetInnerHTML={{ __html: sheet.getStyleTags(html) }} />
       <link
         href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Open+Sans:400,400i,700,700i"
