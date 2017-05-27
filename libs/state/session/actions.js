@@ -24,3 +24,8 @@ export const loginFailure = (error: Error): Action => ({
   type: LOGIN_FAILURE,
   error,
 });
+
+export const LOGOUT = 'session/LOGOUT';
+export const logout = (): Action => ({
+  type: 'session/LOGOUT',
+});
