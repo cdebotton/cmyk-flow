@@ -33,6 +33,7 @@ declare module 'koa' {
     res: http$ServerResponse,
     ctx: Context,
     response: Response,
+    body: any,
 
     fresh: boolean,
     header: SimpleHeader,
@@ -170,6 +171,10 @@ declare module 'koa' {
       ((name: string) => Context),
   };
 
+  declare type Session = {
+    token: ?string,
+  };
+
   declare type Context = {
     accept: $PropertyType<Request, 'accept'>,
     app: Application,
@@ -181,6 +186,7 @@ declare module 'koa' {
     res: http$ServerResponse,
     respond?: boolean,
     response: Response,
+    session: Session,
     state: Object,
 
     assert: (test: mixed, status: number, message?: string, opts?: mixed) => void,
