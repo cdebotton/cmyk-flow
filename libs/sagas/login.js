@@ -1,30 +1,47 @@
 /* @flow */
 
-import { call, put, take, fork, cancel, cancelled } from 'redux-saga/effects';
+import { call, put, take, fork, cancel, cancelled, select } from 'redux-saga/effects';
+
 import {
   LOGIN_REQUEST,
-  LOGOUT,
   LOGIN_FAILURE,
+  LOGOUT_REQUEST,
   loginSuccess,
   loginFailure,
+  logoutSuccess,
+  logoutFailure,
 } from 'state/session/actions';
+
 import { push } from 'state/router/actions';
 import Api from 'services/Api';
+import Storage from 'services/Storage';
 import type { IOEffect } from 'redux-saga/effects';
-import type { Action } from 'state/types';
+import type { State } from 'state/types';
+
+function* logout(): Generator<IOEffect, void, *> {
+  const token = yield select((state: State) => state.session.token);
+
+  try {
+    yield call(Api.logout, token);
+    yield put(logoutSuccess());
+    yield call(Storage.removeItem, 'token');
+  } catch (err) {
+    yield put(logoutFailure(err));
+  }
+}
 
 export function* authorize(username: string, password: string): Generator<IOEffect, void, *> {
   try {
     const { token } = yield call(Api.authorize, username, password);
 
     yield put(loginSuccess(token));
-    yield call(Api.storeData, { token });
+    yield call(Storage.set, { token });
     yield put(push('/admin'));
   } catch (error) {
     yield put(loginFailure(error));
   } finally {
     if (yield cancelled()) {
-      console.log('Cancelled!');
+      yield call(logout);
     }
   }
 }
@@ -33,12 +50,13 @@ export default function* login(): Generator<IOEffect, void, *> {
   while (true) {
     const { payload: { username, password } } = yield take(LOGIN_REQUEST);
     const task = yield fork(authorize, username, password);
-    const action = yield take([LOGOUT, LOGIN_FAILURE]);
+    const action = yield take([LOGOUT_REQUEST, LOGIN_FAILURE]);
 
-    if (action.type === LOGOUT) {
+    if (action.type === LOGOUT_REQUEST) {
+      yield fork(logout);
       yield cancel(task);
     }
 
-    yield call(Api.removeItem, 'token');
+    yield call(Storage.removeItem, 'token');
   }
 }

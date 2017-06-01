@@ -18,7 +18,7 @@ type RouterContext = {
 
 export default () => (ctx: Context) => {
   const routerContext: RouterContext = {};
-  const store = configureStore();
+  const store = configureStore(ctx.session);
   store.runSaga(rootSaga);
 
   const html = renderToString(
@@ -38,6 +38,6 @@ export default () => (ctx: Context) => {
     ctx.status = routerContext.status;
   }
 
-  const markup = renderToStaticMarkup(<Html html={html} />);
+  const markup = renderToStaticMarkup(<Html state={store.getState()} html={html} />);
   ctx.body = `<!doctype>${markup}`;
 };

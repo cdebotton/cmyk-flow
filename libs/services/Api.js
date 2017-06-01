@@ -5,14 +5,14 @@ import 'isomorphic-fetch';
 type JSONType = string | number | { [key: string]: JSONType } | JSONType[];
 type Method = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
-const makeRequest = async (method: Method, uri: string, data: JSONType): Promise<JSON | void> => {
+const makeRequest = async (method: Method, uri: string, data?: JSONType): Promise<JSON | void> => {
   const response = await fetch(uri, {
     method,
     headers: {
       'Content-Type': 'application/json',
-      include: 'credentials',
     },
-    body: JSON.stringify(data),
+    credentials: 'include',
+    body: data ? JSON.stringify(data) : null,
   });
 
   if (!response.ok) {
@@ -28,6 +28,5 @@ const makeRequest = async (method: Method, uri: string, data: JSONType): Promise
 export default {
   authorize: (username: string, password: string) =>
     makeRequest('POST', '/api/login', { username, password }),
-  storeData: (data: { [key: string]: string | number | boolean }) => data,
-  removeItem: (key: string) => key,
+  logout: () => makeRequest('POST', '/api/logout'),
 };

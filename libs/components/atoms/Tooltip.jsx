@@ -47,12 +47,18 @@ const Tooltip = styled.span`
 `;
 
 type Props = {
-  children: React$Element | string,
+  children?: React$Element<*>,
 };
 
-const Element = ({ children, ...rest }: Props): React$Element<any> =>
-  React.cloneElement(children, {
+const Element = ({ children, ...rest }: Props): React$Element<any> => {
+  if (!children) {
+    throw new ReferenceError(
+      'Tooltip must be provided with a child elment that conforms to React$Element.',
+    );
+  }
+  return React.cloneElement(children, {
     children: <Tooltip {...rest}>{children.props.children}</Tooltip>,
   });
+};
 
 export default Element;

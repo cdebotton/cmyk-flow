@@ -26,8 +26,23 @@ type LoginFailure = {|
   error: Error,
 |};
 
-type Logout = {|
-  type: 'session/LOGOUT',
+type LogoutRequest = {|
+  type: 'session/LOGOUT_REQUEST',
 |};
 
-export type Action = LoginRequest | LoginSuccess | LoginFailure | Logout;
+type LogoutSuccess = {|
+  type: 'session/LOGOUT_SUCCESS',
+|};
+
+type LogoutFailure = {|
+  type: 'session/LOGOUT_FAILURE',
+  error: Error,
+|};
+
+export type Action =
+  | LoginRequest
+  | LoginSuccess
+  | LoginFailure
+  | LogoutRequest
+  | LogoutSuccess
+  | LogoutFailure;

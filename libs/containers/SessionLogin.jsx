@@ -6,15 +6,10 @@ import { loginRequest } from 'state/session/actions';
 import { getAuthed } from 'state/session/selectors';
 import type { Connector } from 'react-redux';
 import type { State, Dispatch } from 'state/types';
-
-type Props = {
-  error: ?string,
-  authed: boolean,
-  handleSubmit: ({ username: string, password: string }) => void,
-};
+import type { Props } from 'components/pages/Login';
 
 const mapStateToProps = (state: State) => ({
-  authed: getAuthed(state),
+  isAuthed: getAuthed(state),
   error: state.session.error,
 });
 

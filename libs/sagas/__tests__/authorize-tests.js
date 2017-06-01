@@ -5,6 +5,7 @@ import fetchMock from 'fetch-mock';
 import { call, put } from 'redux-saga/effects';
 import { authorize } from 'sagas/login';
 import Api from 'services/Api';
+import Storage from 'services/Storage';
 import { loginSuccess } from 'state/session/actions';
 import { push } from 'state/router/actions';
 
@@ -32,8 +33,8 @@ test('it should then PUT loginSuccess with the retreived token', (t) => {
   t.deepEqual(gen.next({ token: TOKEN }).value, put(loginSuccess(TOKEN)));
 });
 
-test('it shouild CALL Api.storeData with the returned token', (t) => {
-  t.deepEqual(gen.next(TOKEN).value, call(Api.storeData, { token: TOKEN }));
+test('it shouild CALL Api.set with the returned token', (t) => {
+  t.deepEqual(gen.next(TOKEN).value, call(Storage.set, { token: TOKEN }));
 });
 
 test('finally, it should push the router to redirect to `/admin`', (t) => {

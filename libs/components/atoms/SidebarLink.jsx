@@ -9,9 +9,17 @@ const SidebarLink = styled(Link)`
   color: #fff;
   text-decoration: none;
   font-size: ${modularScale(2)};
+  background-color: transparent;
+  border: none;
+  margin-top: ${modularScale(0)};
+  cursor: pointer;
 
-  & + & {
-    margin-top: ${modularScale(0)};
+  &:focus {
+    outline: none;
+  }
+
+  &:first-child {
+    margin-top: 0;
   }
 `;
 

@@ -5,8 +5,8 @@ import fetchMock from 'fetch-mock';
 import { createMockTask, cloneableGenerator } from 'redux-saga/utils';
 import { take, call, fork, cancel } from 'redux-saga/effects';
 import login, { authorize } from 'sagas/login';
-import { LOGIN_REQUEST, LOGOUT, LOGIN_FAILURE, logout } from 'state/session/actions';
-import Api from 'services/Api';
+import { LOGIN_REQUEST, LOGOUT_REQUEST, LOGIN_FAILURE, logoutRequest } from 'state/session/actions';
+import Storage from 'services/Storage';
 
 const creds = { payload: { username: 'foo', password: 'bar' } };
 
@@ -34,10 +34,10 @@ test('it should FORK a request to authorize the credentials next', (t) => {
 
 test('it should CANCEL the login task if it TAKES a LOGOUT action', (t) => {
   const task = createMockTask();
-  t.deepEqual(generator.next(task).value, take([LOGOUT, LOGIN_FAILURE]));
-  t.deepEqual(generator.next(logout()).value, cancel(task));
+  t.deepEqual(generator.next(task).value, take([LOGOUT_REQUEST, LOGIN_FAILURE]));
+  t.deepEqual(generator.next(logoutRequest()).value, cancel(task));
 });
 
 test('it should CALL Api.removeItem on `token`', (t) => {
-  t.deepEqual(generator.next().value, call(Api.removeItem, 'token'));
+  t.deepEqual(generator.next().value, call(Storage.removeItem, 'token'));
 });

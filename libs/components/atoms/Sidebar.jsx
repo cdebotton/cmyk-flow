@@ -7,7 +7,7 @@ const Sidebar = styled.nav`
   display: flex;
   flex-flow: column nowrap;
   flex: 0 0 ${rem('75px')};
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: #1a1a1a;
   height: 100%;
   min-height: 100vh;
   padding: ${modularScale(1)}

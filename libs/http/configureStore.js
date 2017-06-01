@@ -5,10 +5,19 @@ import createSagaMiddleware from 'redux-saga';
 import rootReducer from 'state';
 import type { Store } from 'state/types';
 
-const configureStore = (): Store & { runSaga: Function } => {
+type Session = {
+  token: ?string,
+};
+
+const configureStore = (session: Session): Store & { runSaga: Function } => {
   const sagaMiddleware = createSagaMiddleware();
   const enhancer = compose(applyMiddleware(sagaMiddleware));
-  const store = createStore(rootReducer, enhancer);
+  const initialState = {
+    session: {
+      token: session.token,
+    },
+  };
+  const store = createStore(rootReducer, initialState, enhancer);
 
   return {
     ...store,

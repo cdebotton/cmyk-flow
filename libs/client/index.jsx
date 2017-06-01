@@ -10,9 +10,20 @@ import Router from 'containers/ConnectedRouter';
 import configureStore from 'client/configureStore';
 import rootSaga from 'sagas';
 
+const stateElement = document.querySelector('#state');
+
+if (!stateElement) {
+  throw new DOMError("#state isn't a valid DOM element.");
+}
+
+if (!stateElement.innerText) {
+  throw new DOMError("#state doesn't contain the applications tate.");
+}
+
+const initialState = JSON.parse(stateElement.innerText);
 const mount = document.querySelector('#app');
 const history = createHistory();
-const store = configureStore(history);
+const store = configureStore(history, initialState);
 store.runSaga(rootSaga);
 
 const render = (Component) => {

@@ -25,7 +25,18 @@ export const loginFailure = (error: Error): Action => ({
   error,
 });
 
-export const LOGOUT = 'session/LOGOUT';
-export const logout = (): Action => ({
-  type: 'session/LOGOUT',
+export const LOGOUT_REQUEST = 'session/LOGOUT_REQUEST';
+export const logoutRequest = (): Action => ({
+  type: 'session/LOGOUT_REQUEST',
+});
+
+export const LOGOUT_SUCCESS = 'session/LOGOUT_SUCCESS';
+export const logoutSuccess = (): Action => ({
+  type: 'session/LOGOUT_SUCCESS',
+});
+
+export const LOGOUT_FAILURE = 'session/LOGOUT_FAILURE';
+export const logoutFailure = (error: Error): Action => ({
+  type: 'session/LOGOUT_FAILURE',
+  error,
 });
