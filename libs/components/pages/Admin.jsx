@@ -13,24 +13,28 @@ const Admin = (): React$Element<any> => (
   <Page gradient>
     <Sidebar>
       <SidebarGroup>
-        <Tooltip right content="Home">
-          <SidebarLink to="/admin"><FontAwesome name="home" /></SidebarLink>
-        </Tooltip>
-        <Tooltip right content="Documents">
-          <SidebarLink to="/documents"><FontAwesome name="folder" /></SidebarLink>
-        </Tooltip>
-        <Tooltip right content="Users">
-          <SidebarLink to="/users"><FontAwesome name="users" /></SidebarLink>
-        </Tooltip>
-        <Tooltip right content="Settings">
-          <SidebarLink to="/settings"><FontAwesome name="cogs" /></SidebarLink>
-        </Tooltip>
+
+        <SidebarLink to="/admin">
+          <FontAwesome name="home" />
+          <Tooltip right>Home</Tooltip>
+        </SidebarLink>
+        <SidebarLink to="/documents">
+          <FontAwesome name="folder" />
+          <Tooltip right>Documents</Tooltip>
+        </SidebarLink>
+        <SidebarLink to="/users">
+          <FontAwesome name="users" />
+          <Tooltip right>Users</Tooltip>
+        </SidebarLink>
+        <SidebarLink to="/settings">
+          <FontAwesome name="cogs" />
+          <Tooltip right>Settings</Tooltip>
+        </SidebarLink>
       </SidebarGroup>
-      <SidebarGroup>
-        <Tooltip right content="Logout">
-          <SidebarButton to="/settings"><FontAwesome name="sign-out" /></SidebarButton>
-        </Tooltip>
-      </SidebarGroup>
+      <SidebarButton>
+        <FontAwesome name="sign-out" />
+        <Tooltip right>Sign out</Tooltip>
+      </SidebarButton>
     </Sidebar>
   </Page>
 );
