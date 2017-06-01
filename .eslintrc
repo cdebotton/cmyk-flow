@@ -20,6 +20,12 @@
       {
         "props": false
       }
+    ],
+    "no-constant-condition": [
+      "error",
+      {
+        "checkLoops": false
+      }
     ]
   },
   "settings": {
