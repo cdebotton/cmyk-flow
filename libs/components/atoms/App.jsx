@@ -11,6 +11,10 @@ injectGlobal`
   *::after {
     box-sizing: border-box;
   }
+
+  ::selection {
+    background-color: black;
+  }
   
   body {
     font-family: ${props => props.theme.admin.typography.fonts.regular};
