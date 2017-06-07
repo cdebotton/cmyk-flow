@@ -1,7 +1,6 @@
 /* @flow */
 
 export type State = {
-  +isLoggingIn: boolean,
   +token: ?string,
   +error: ?Error,
 };
