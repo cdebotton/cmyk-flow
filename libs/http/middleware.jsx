@@ -2,12 +2,13 @@
 
 import React from 'react';
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
-import { Provider } from 'react-redux';
+import { ApolloProvider } from 'react-apollo';
 import Router from 'react-router/StaticRouter';
 import Html from 'components/pages/Html';
 import Root from 'containers/Root';
 import configureStore from 'http/configureStore';
 import rootSaga from 'sagas';
+import client from 'client/apollo';
 
 import type { Context } from 'koa';
 
@@ -22,11 +23,11 @@ export default () => (ctx: Context) => {
   store.runSaga(rootSaga);
 
   const html = renderToString(
-    <Provider store={store}>
+    <ApolloProvider store={store} client={client}>
       <Router context={routerContext} location={ctx.req.url}>
         <Root />
       </Router>
-    </Provider>,
+    </ApolloProvider>,
   );
 
   if (routerContext.url) {

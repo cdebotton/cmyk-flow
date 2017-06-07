@@ -2,38 +2,40 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
+import { ApolloProvider } from 'react-apollo';
 import createHistory from 'history/createBrowserHistory';
 import Root from 'containers/Root';
 import Router from 'containers/ConnectedRouter';
 import configureStore from 'client/configureStore';
 import rootSaga from 'sagas';
+import client from 'client/apollo';
 
 const stateElement = document.querySelector('#state');
 
 if (!stateElement) {
-  throw new DOMError("#state isn't a valid DOM element.");
+  throw new DOMError();
 }
 
 if (!stateElement.innerText) {
-  throw new DOMError("#state doesn't contain the applications tate.");
+  throw new DOMError();
 }
 
 const initialState = JSON.parse(stateElement.innerText);
 const mount = document.querySelector('#app');
 const history = createHistory();
 const store = configureStore(history, initialState);
+
 store.runSaga(rootSaga);
 
 const render = (Component) => {
   ReactDOM.render(
     <AppContainer>
-      <Provider store={store}>
+      <ApolloProvider store={store} client={client}>
         <Router history={history}>
           <Component />
         </Router>
-      </Provider>
+      </ApolloProvider>
     </AppContainer>,
     mount,
   );
