@@ -10,11 +10,11 @@ const GridItemOuter = styled.li`
   position: relative;
 
   & + & {
-    margin-left: 10px;
+    margin-left: ${props => props.margin}px;
   }
 
   &:nth-child(n + ${props => props.itemsPerRow + 1}) {
-    margin-top: ${modularScale(1)};
+    margin-top: ${props => props.margin}px;
   }
 
   &:nth-child(${props => props.itemsPerRow}n + 1) {
@@ -56,8 +56,8 @@ const GridItemInner = styled.div`
   letter-spacing: 3px;
 `;
 
-const GridItem = ({ children }) =>
-  (<GridItemOuter>
+const GridItem = ({ children, ...rest }) =>
+  (<GridItemOuter {...rest}>
     <GridItemInner>
       {children}
     </GridItemInner>
