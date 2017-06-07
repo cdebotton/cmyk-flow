@@ -1,11 +1,9 @@
 /* @flow */
 
-import { call, put, take, fork, cancel, cancelled, select } from 'redux-saga/effects';
+import { call, put, take, fork, cancelled, select } from 'redux-saga/effects';
 
 import {
   LOGIN_REQUEST,
-  LOGIN_FAILURE,
-  LOGOUT_REQUEST,
   loginSuccess,
   loginFailure,
   logoutSuccess,
@@ -49,14 +47,6 @@ export function* authorize(username: string, password: string): Generator<IOEffe
 export default function* login(): Generator<IOEffect, void, *> {
   while (true) {
     const { payload: { username, password } } = yield take(LOGIN_REQUEST);
-    const task = yield fork(authorize, username, password);
-    const action = yield take([LOGOUT_REQUEST, LOGIN_FAILURE]);
-
-    if (action.type === LOGOUT_REQUEST) {
-      yield fork(logout);
-      yield cancel(task);
-    }
-
-    yield call(Storage.removeItem, 'token');
+    yield fork(authorize, username, password);
   }
 }
