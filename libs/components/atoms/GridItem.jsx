@@ -54,6 +54,10 @@ const GridItemInner = styled.div`
   text-transform: uppercase;
   font-size: ${modularScale(1)};
   letter-spacing: 3px;
+
+  & > * {
+    z-index: 1;
+  }
 `;
 
 const GridItem = ({ children, ...rest }) =>
