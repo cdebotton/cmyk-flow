@@ -13,7 +13,7 @@ type Props = {
 };
 
 type OwnProps = {
-  component: (props: any) => React$Element<*>,
+  component: any,
 };
 
 type RenderProps = {
@@ -24,8 +24,8 @@ const PrivateRoute = ({
   component: Component,
   authed,
   ...rest
-}: OwnProps & Props): React$Element<*> => (
-  <Route
+}: OwnProps & Props): React$Element<*> =>
+  (<Route
     {...rest}
     render={(props: RenderProps) => {
       if (authed) {
@@ -34,8 +34,7 @@ const PrivateRoute = ({
 
       return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />;
     }}
-  />
-);
+  />);
 
 const mapStateToProps = (state: State) => ({
   authed: getAuthed(state),
