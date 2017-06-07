@@ -4,7 +4,7 @@ import { LOCATION_CHANGE } from 'state/router/actions';
 import type { State } from 'state/router/types';
 import type { Action } from 'state/types';
 
-const initialState = {
+export const initialState = {
   location: null,
 };
 
