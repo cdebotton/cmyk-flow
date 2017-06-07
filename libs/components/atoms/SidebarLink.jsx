@@ -1,18 +1,36 @@
 /* @flow */
 
 import styled from 'styled-components';
-import { modularScale } from 'polished';
+import { modularScale, rem } from 'polished';
 import Link from 'react-router-dom/Link';
 
 const SidebarLink = styled(Link)`
   position: relative;
-  color: #fff;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  align-content: center;
+  color: hsla(0, 0%, 0%, 0.4);
+
   text-decoration: none;
-  font-size: ${modularScale(2)};
+  font-size: ${modularScale(1)};
   background-color: transparent;
   border: none;
-  margin-top: ${modularScale(0)};
   cursor: pointer;
+  transition:
+    font-size 135ms ease-in,
+    text-shadow 135ms ease-in;
+
+  height: ${rem('30px')};
+
+  &:hover {
+    color: hsla(212, 100%, 100%, 1.0);
+    font-size: ${modularScale(3)};
+  }
+
+  & + & {
+    margin-top: 1rem;
+  }
 
   &:focus {
     outline: none;

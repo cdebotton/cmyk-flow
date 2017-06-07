@@ -1,17 +1,19 @@
 /* @flow */
 
-import styled from 'styled-components';
-import { modularScale } from 'polished';
+import styled, { css } from 'styled-components';
 
 const SidebarGroup = styled.div`
   position: relative;
   display: flex;
   flex-flow: column nowrap;
-  margin-top: ${modularScale(4)};
+  justify-content: center;
+  align-items: center;
 
-  &:first-child {
-    margin-top: 0;
-  }
+  ${props =>
+    props.push &&
+    css`
+      margin-top: auto;
+  `}
 `;
 
 export default SidebarGroup;
