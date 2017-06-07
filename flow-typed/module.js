@@ -2,6 +2,6 @@
 
 declare var module: {
   hot: {
-    accept: () => void,
+    accept: (path: string, callback: () => void) => void,
   },
 };

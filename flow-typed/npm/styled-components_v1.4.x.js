@@ -22,8 +22,8 @@ declare module 'styled-components' {
   }
 
   declare class ServerStyleSheet {
-    getStyleTags: () => [React$Element<any>],
-    getStyleElement: () => string,
+    getStyleTags: (source: string | React$Element<*>) => [React$Element<any>],
+    getStyleElement: (source: string | React$Element<*>) => string,
   }
 
   declare module.exports: {

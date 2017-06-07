@@ -1,6 +1,6 @@
 /* @flow */
 
-import type Koa from 'koa';
+import type { Middleware } from 'koa';
 
 declare module 'koa-compress' {
   declare type koa$compress$Options = {
@@ -9,7 +9,7 @@ declare module 'koa-compress' {
     flush?: Function,
   };
 
-  declare function koa$compress(options?: koa$compress$Options): Koa.Middleware;
+  declare function koa$compress(options?: koa$compress$Options): Middleware;
 
   declare module.exports: koa$compress;
 }
