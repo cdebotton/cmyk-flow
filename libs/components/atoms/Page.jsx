@@ -16,13 +16,17 @@ const Page = styled.div`
   min-height: 100%;
   display: flex;
   
-  ${props => props.centered && css`
+  ${props =>
+    props.centered &&
+    css`
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
   `}
 
-  ${props => props.gradient && css`
+  ${props =>
+    props.gradient &&
+    css`
     background-image:
       linear-gradient(
         to top right,
@@ -33,6 +37,7 @@ const Page = styled.div`
         #4dacff
       );
     background-size: 400vw 400vh;
+    background-position: fixed;
     animation: ${shift} 12s linear infinite alternate;
     color: #fff;
   `}

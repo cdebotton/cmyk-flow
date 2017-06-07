@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { rem, modularScale } from 'polished';
 
 const Sidebar = styled.nav`
+  position: fixed;
   display: flex;
   flex-flow: column nowrap;
   flex: 0 0 auto;
