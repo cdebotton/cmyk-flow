@@ -1,14 +1,18 @@
 /* @flow */
 
 import React from 'react';
-import { renderToStaticMarkup, renderToString } from 'react-dom/server';
-import { ApolloProvider } from 'react-apollo';
+import { renderToStaticMarkup } from 'react-dom/server';
+import {
+  ApolloClient,
+  ApolloProvider,
+  createNetworkInterface,
+  renderToStringWithData,
+} from 'react-apollo';
 import Router from 'react-router/StaticRouter';
 import Html from 'components/pages/Html';
 import Root from 'containers/Root';
 import configureStore from 'http/configureStore';
 import rootSaga from 'sagas';
-import client from 'client/apollo';
 
 import type { Context } from 'koa';
 
@@ -17,12 +21,23 @@ type RouterContext = {
   status?: number,
 };
 
-export default () => (ctx: Context) => {
+export default () => async (ctx: Context) => {
   const routerContext: RouterContext = {};
   const store = configureStore(ctx.session);
+  const client = new ApolloClient({
+    ssrMode: true,
+    networkInterface: createNetworkInterface({
+      uri: 'http://localhost:3000/graphql',
+      opts: {
+        credentials: 'same-origin',
+        headers: ctx.req.headers,
+      },
+    }),
+  });
+
   store.runSaga(rootSaga);
 
-  const html = renderToString(
+  const html = await renderToStringWithData(
     <ApolloProvider store={store} client={client}>
       <Router context={routerContext} location={ctx.req.url}>
         <Root />
@@ -39,6 +54,11 @@ export default () => (ctx: Context) => {
     ctx.status = routerContext.status;
   }
 
-  const markup = renderToStaticMarkup(<Html state={store.getState()} html={html} />);
+  const state = {
+    ...store.getState(),
+    apollo: client.getInitialState(),
+  };
+
+  const markup = renderToStaticMarkup(<Html state={state} html={html} />);
   ctx.body = `<!doctype>${markup}`;
 };
