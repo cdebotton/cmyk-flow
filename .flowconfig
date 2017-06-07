@@ -2,6 +2,7 @@
 .*/node_modules/styled-components/.
 .*/node_modules/stylelint/.**
 .*/node_modules/polished/.*
+.*/node_modules/graphql/.*
 
 [include]
 
